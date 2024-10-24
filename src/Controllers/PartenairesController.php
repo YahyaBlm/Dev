@@ -2,20 +2,22 @@
 
 namespace App\Controllers;
 
-class PartenairesController extends MainController
+use App\Models\Partner;
+
+class PartenairesController 
 {
     private $model;
+    protected string $table;
 
     public function __construct()
     {
-        parent::__construct();
-        // $this->model = new Articles();
-        // $this->table = 'articles';
+        $this->model = new Partner();
+        $this->table = 'partner';
     }
 
     public function index()
     {
-        // $articles = $this->model->readAll();
+        $partners = $this->model->readAll();
         require './Views/partenaires.php';
     }
 }

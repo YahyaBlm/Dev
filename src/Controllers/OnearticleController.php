@@ -4,20 +4,21 @@ namespace App\Controllers;
 
 use App\Models\Articles;
 
-class OnearticleController extends MainController
+class OnearticleController 
 {
     private $model;
+    protected string $table;
 
     public function __construct()
     {
-        parent::__construct();
+
         $this->model = new Articles();
         $this->table = 'articles';
     }
 
     public function index()
     {
-        // $articles = $this->model->readAll();
+        // $article = $this->model->readOnly($id);
         require './Views/article.php';
     }
 }

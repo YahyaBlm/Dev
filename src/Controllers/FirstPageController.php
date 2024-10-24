@@ -2,20 +2,17 @@
 
 namespace App\Controllers;
 
-class FirstPageController extends MainController
+class FirstPageController 
 {
     private $model;
 
     public function __construct()
     {
-        parent::__construct();
-        // $this->model = new Articles();
-        // $this->table = 'articles';
+        
     }
 
     public function index()
     {
-        // $articles = $this->model->readAll();
         require './Views/firstPage.php';
     }
 }

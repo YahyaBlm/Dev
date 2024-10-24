@@ -2,20 +2,17 @@
 
 namespace App\Controllers;
 
-class ContactController extends MainController
+class ContactController 
 {
     private $model;
 
     public function __construct()
     {
-        parent::__construct();
-        // $this->model = new Articles();
-        // $this->table = 'articles';
+        // $this->model = new ();
     }
 
     public function index()
     {
-        // $articles = $this->model->readAll();
         require './Views/contact.php';
     }
 }

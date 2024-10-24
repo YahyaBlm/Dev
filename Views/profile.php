@@ -42,7 +42,7 @@
           <div>
             <input type="submit" value="Se connecter" id="submitConexion" class="submit" />
           </div><br>
-          <a href="inscription.php" class="signin">S'inscrire</a>
+          <a href="/inscription" class="signin">S'inscrire</a>
         </div>
 
       </form>

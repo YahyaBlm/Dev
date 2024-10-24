@@ -37,6 +37,7 @@
     <h1 class="title titre">Mes Oeuvres</h1>
 
     <section class="cards-container">
+      
       <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Image Oeuvre1" />
 
@@ -48,75 +49,6 @@
           </p>
           <a href="/oeuvre">En savoir plus</a>
         </div>
-      </div>
-
-      <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image Oeuvre2" />
-
-        <div class="card-content">
-          <h3>Oeuvre 2</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
-            perferendis..
-          </p>
-          <a href="oeuvre.php">En savoir plus</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image Oeuvre3" />
-
-        <div class="card-content">
-          <h3>Oeuvre 3</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
-            perferendis..
-          </p>
-          <a href="oeuvre.php">En savoir plus</a>
-        </div>
-
-      </div>
-
-      <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image Oeuvre3" />
-
-        <div class="card-content">
-          <h3>Oeuvre 4</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
-            perferendis..
-          </p>
-          <a href="oeuvre.php">En savoir plus</a>
-        </div>
-
-      </div>
-
-      <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image Oeuvre3" />
-
-        <div class="card-content">
-          <h3>Oeuvre 5</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
-            perferendis..
-          </p>
-          <a href="oeuvre.php">En savoir plus</a>
-        </div>
-
-      </div>
-
-      <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image Oeuvre3" />
-
-        <div class="card-content">
-          <h3>Oeuvre 6</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
-            perferendis..
-          </p>
-          <a href="oeuvre.php">En savoir plus</a>
-        </div>
-
       </div>
 
     </section>

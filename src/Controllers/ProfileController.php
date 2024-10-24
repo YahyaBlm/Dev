@@ -2,20 +2,22 @@
 
 namespace App\Controllers;
 
-class ProfileController extends MainController
+use App\Models\Users;
+
+class ProfileController
 {
     private $model;
+    protected string $table;
 
     public function __construct()
     {
-        parent::__construct();
-        // $this->model = new Articles();
-        // $this->table = 'articles';
+        $this->model = new Users();
+        $this->table = 'users';
     }
 
     public function index()
     {
-        // $articles = $this->model->readAll();
+        $users = $this->model->readAll();
         require './Views/profile.php';
     }
 }

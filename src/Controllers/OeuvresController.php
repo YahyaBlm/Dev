@@ -2,20 +2,22 @@
 
 namespace App\Controllers;
 
-class OeuvresController extends MainController
+use App\Models\Livres;
+
+class OeuvresController
 {
     private $model;
+    protected string $table;
 
     public function __construct()
     {
-        parent::__construct();
-        // $this->model = new Articles();
-        // $this->table = 'articles';
+        $this->model = new Livres();
+        $this->table = 'livres';
     }
 
     public function index()
     {
-        // $articles = $this->model->readAll();
+        $book = $this->model->readAll();
         require './Views/oeuvres.php';
     }
 }
