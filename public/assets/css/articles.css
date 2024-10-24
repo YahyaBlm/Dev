@@ -1,0 +1,24 @@
+/*---------------- Articles --------------*/
+
+.articles-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+    margin-left: 10%;
+    padding: 20px;
+  }
+  
+  .article-card {
+    display: flex;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    width: 90%;
+    height: 200px;
+    transition: transform 0.3s ease;
+  }
+  

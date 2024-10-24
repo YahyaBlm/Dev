@@ -1,0 +1,16 @@
+{
+    "name": "yahya/dev",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Admin\\": "Admin/src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "YahyaBlm",
+            "email": "yahya.belmou@gmail.com"
+        }
+    ],
+    "require": {}
+}
