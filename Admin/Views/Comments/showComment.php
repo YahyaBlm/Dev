@@ -15,7 +15,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
         <br>
         <p><?php echo $comment->commentaire; ?></p>
         <br>
-        <a class="btn btn-danger" href="/Comment/delete/<?php echo $comment->id; ?>">Supprimer</a>
+        <?php if ($_SESSION['auth']->id_role > 2) { ?>
+            <a class="btn btn-danger" href="/Comment/delete/<?php echo $comment->id; ?>">Supprimer</a>
+        <?php } ?>
         <a class="btn btn-dark" href="/Comment">Retour</a>
     </div>
 </body>

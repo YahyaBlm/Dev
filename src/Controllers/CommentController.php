@@ -15,18 +15,21 @@ class CommentController extends MainController
 
     public function index()
     {
+        $this->isLevel(50);
         $comments = $this->model->readAll();
         require 'Admin/Views/Comments/listComments.php';
     }
 
     public function show($id)
     {
+        $this->isLevel(50);
         $comment = $this->model->readOnly($id);
         require 'Admin/Views/Comments/showComment.php';
     }
 
     public function delete($id)
     {
+        $this->admin();
         $delete = "Voulez-vous supprimer ce commentaire ?";
 
         if (isset($_POST['yes'])) {
@@ -40,5 +43,28 @@ class CommentController extends MainController
         }
         $root = "/Comment";
         require 'Admin/Views/delete.php';
+    }
+
+    public function insertComment($idBook)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_SESSION['auth'])) {
+                $comment = filter_var($_POST["comment"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+                $infos = [
+                    'commentaire' => $comment,
+                    'id_livre' => $idBook,
+                    'id_user' => $_SESSION['auth']->id
+                ];
+
+                $this->model->create($infos);
+
+                header('Location: /books/details/' . $idBook);
+            } else {
+                header('location: /user/login');
+            }
+        } else {
+            require '/Views/oeuvre.php';
+        }
     }
 }

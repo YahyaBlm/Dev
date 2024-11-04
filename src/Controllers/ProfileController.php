@@ -3,8 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\Users;
+use App\Models\Verifications;
 
-class ProfileController
+class ProfileController 
 {
     private $model;
     protected string $table;
@@ -20,4 +21,5 @@ class ProfileController
         $users = $this->model->readAll();
         require './Views/profile.php';
     }
+
 }

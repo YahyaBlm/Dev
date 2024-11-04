@@ -20,6 +20,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
 
         <div class="d-flex justify-content-between">
             <h1>Liste des Commentaires</h1>
+            <br>
+            <a class="btn btn-dark" href="/home">Retour au site</a>
         </div><br>
 
         <table class="table table-light table-striped">

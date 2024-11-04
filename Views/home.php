@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./public/assets/css/index.css">
+  <script src="/public/assets/js/burgerMenu.js"></script>
   <title>Thalie Perrot</title>
 </head>
 
@@ -15,11 +16,21 @@
 
       <nav class="navBar">
         <a href="/home" class="active">Accueil</a>
-        <a href="/oeuvres">Oeuvres</a>
+        <a href="/books">Oeuvres</a>
         <a href="/articles">Articles</a>
         <a href="/partenaires">Partenaires</a>
         <a href="/contact">Contact</a>
-        <a href="/profile"><img src="./public/assets/Images/iconProfil.png" class="iconProfil" alt="icon pour acceder a son profile"></a>
+
+        <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->id_role > 1) { ?>
+          <a href="/book/index">Admin</a>
+        <?php } ?>
+
+        <?php if (!isset($_SESSION['auth'])) { ?>
+          <a href="/user/login" class="active"><img src="/public/assets/Images/iconProfil.png" class="iconProfil" alt="icon pour acceder a son profile"></a>
+        <?php } else { ?>
+          <a href="/user/logout">Déconnexion</a>
+        <?php   } ?>
+
       </nav>
     </div>
     <img class="mere" src="./public/assets/Images/Ship.jpg" alt="bateau sur mere">

@@ -16,11 +16,21 @@
 
       <nav class="navBar">
         <a href="/home">Accueil</a>
-        <a href="/oeuvres" class="active">Oeuvres</a>
+        <a href="/books" class="active">Oeuvres</a>
         <a href="/articles">Articles</a>
         <a href="/partenaires">Partenaires</a>
         <a href="/contact">Contact</a>
-        <a href="/profile"><img src="./public/assets/Images/iconProfil.png" class="iconProfil" alt="icon pour acceder a son profile"></a>
+
+        <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->id_role > 1) { ?>
+          <a href="/book/index">Admin</a>
+        <?php } ?>
+
+        <?php if (!isset($_SESSION['auth'])) { ?>
+          <a href="/user/login" class="active"><img src="/public/assets/Images/iconProfil.png" class="iconProfil" alt="icon pour acceder a son profile"></a>
+        <?php } else { ?>
+          <a href="/user/logout">Déconnexion</a>
+        <?php   } ?>
+
       </nav>
     </div>
     <img class="mere" src="./public/assets/Images/oeuvreWallpaper.png" alt="bal dansant" />
@@ -37,19 +47,19 @@
     <h1 class="title titre">Mes Oeuvres</h1>
 
     <section class="cards-container">
-      
-      <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Image Oeuvre1" />
+      <?php foreach ($books as $index => $book) { ?>
+        <div class="card">
+          <img src="/Admin/public/assets/Images/BookImages/<?= $book->livre_couverture; ?>" alt="Image de l'oeuvre" />
 
-        <div class="card-content">
-          <h3>Oeuvre 1</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
-            perferendis..
-          </p>
-          <a href="/oeuvre">En savoir plus</a>
+          <div class="card-content">
+            <h3><?= $book->livre_titre ?></h3>
+            <p>
+              <?= substr($book->livre_resume, 0, 30) . '...'; ?>
+            </p>
+            <a href="/books/details/<?= $book->id; ?>">En savoir plus</a>
+          </div>
         </div>
-      </div>
+      <?php } ?>
 
     </section>
   </main>

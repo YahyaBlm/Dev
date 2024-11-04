@@ -4,37 +4,45 @@ namespace App\Controllers;
 
 use App\Models\Users;
 use App\Models\VerifBack;
+use App\Models\Verifications;
 
 class UserController extends MainController
 {
     private $model;
+    private $verifications;
     private $VerifBack;
 
     public function __construct()
     {
         $this->model = new Users();
         $this->VerifBack = new VerifBack();
+        $this->verifications = new Verifications;
     }
 
     public function index()
     {
+        $this->isLevel(50);
         $users = $this->model->readAll();
         require 'Admin/Views/Users/listUsers.php';
     }
 
     public function create()
     {
+        $this->isLevel(50);
         $firstname = $this->VerifBack->verifUserName();
         $lastname = $this->VerifBack->verifUserLastname();
         $email = $this->VerifBack->verifUserMailInsert();
         $password = $this->VerifBack->verifPassword();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
             $infos = [
                 'user_nom' => $lastname,
                 'user_prenom' => $firstname,
                 'user_email' => $email,
                 'id_role' => $_POST['role'],
-                'user_password' => $password
+                'user_password' => $hashedPassword
             ];
 
             $this->model->create($infos);
@@ -50,6 +58,7 @@ class UserController extends MainController
 
     public function update($id)
     {
+        $this->isLevel(50);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $firstname = $this->VerifBack->verifUserName();
             $lastname = $this->VerifBack->verifUserLastname();
@@ -63,7 +72,6 @@ class UserController extends MainController
 
             $this->model->update($id, $infos);
 
-            // header('Location: Admin/Views/Users/listUsers.php');
             header('Location: /user/index');
         }
 
@@ -76,22 +84,68 @@ class UserController extends MainController
 
     public function delete($id)
     {
+        $this->admin();
         $user = $this->model->readOnly($id);
-        // $delete = "Voulez-vous supprimer " . $user->user_prenom . " " . $user->user_nom . " ?";
         $delete = "Voulez-vous supprimer \"" . $user->user_prenom . " " . $user->user_nom . "\" ?";
 
         if (isset($_POST['yes'])) {
             $this->model->delete($id);
 
-            // header('Location: Admin/Views/Users/listUsers.php');
             header('Location: /user/index');
             exit();
         } else if (isset($_POST['no'])) {
-            // header('Location: Admin/Views/Users/listUsers.php');
             header('Location: /user/index');
             exit();
         }
         $root = "/User";
         require 'Admin/Views/delete.php';
     }
+
+    public function login()
+    {
+        if (isset($_SESSION['auth'])) {
+            header('location: /Books');
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $user = $this->verifications->login();
+            if ($user) {
+                $_SESSION['auth'] = $user;
+                header('location: /Books');
+            }
+        }
+        require './Views/profile.php';
+    }
+
+    public function register()
+    {
+        $firstname = $this->VerifBack->verifUserName();
+        $lastname = $this->VerifBack->verifUserLastname();
+        $email = $this->VerifBack->verifUserMailInsert();
+        $password = $this->VerifBack->verifPassword();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            $infos = [
+                'user_nom' => $lastname,
+                'user_prenom' => $firstname,
+                'user_email' => $email,
+                'id_role' => '1',
+                'user_password' => $hashedPassword
+            ];
+
+            $this->model->create($infos);
+
+            header('Location: /user/login');
+        }
+        require './Views/inscription.php';
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['auth']);
+        header('Location: /home');
+    }
+
 }

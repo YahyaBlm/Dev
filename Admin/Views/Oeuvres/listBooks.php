@@ -21,7 +21,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
         <div class="d-flex justify-content-between">
             <h1>Liste des Oeuvres</h1>
 
-            <a class="btn btn-dark" href="/Book/create">Nouvel Oeuvre</a>
+            <a class="btn btn-dark" href="/Book/create">Nouvel Oeuvre</a><br>
+            <a class="btn btn-dark" href="/home">Retour au site</a>
 
         </div><br>
 
@@ -47,7 +48,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
                     <td><?php echo substr($book->livre_linkSale, 0, 30) . '...'; ?></td>
                     <td><!--call to action-->
                         <a class="btn btn-success" href="/Book/update/<?php echo $book->id; ?>">Modifier</a>
-                        <a class="btn btn-danger" href="/Book/delete/<?php echo $book->id; ?>">Supprimer</a>
+                        <?php if ($_SESSION['auth']->id_role > 2) { ?>
+                            <a class="btn btn-danger" href="/Book/delete/<?php echo $book->id; ?>">Supprimer</a>
+                        <?php } ?>
                     </td>
                 </tr>
                 <?php } ?>

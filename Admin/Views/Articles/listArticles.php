@@ -21,7 +21,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
         <div class="d-flex justify-content-between">
             <h1>Liste des Articles</h1>
 
-            <a class="btn btn-dark" href="/Article/create">Nouvel Article</a>
+            <a class="btn btn-dark" href="/Article/create">Nouvel Article</a><br>
+            <a class="btn btn-dark" href="/home">Retour au site</a>
 
         </div><br>
 
@@ -45,7 +46,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
                         <td><img src="/Admin/public/assets/Images/ArticleImages/<?= $article->article_image; ?>" alt="image" width="150" height="90"></td>
                         <td><!--call to action-->
                             <a class="btn btn-success" href="Article/update/<?php echo $article->id; ?>">Modifier</a>
-                            <a class="btn btn-danger" href="Article/delete/<?php echo $article->id; ?>">Supprimer</a>
+                            <?php if ($_SESSION['auth']->id_role > 2) { ?>
+                                <a class="btn btn-danger" href="Article/delete/<?php echo $article->id; ?>">Supprimer</a>
+                            <?php } ?>
 
                         </td>
                     </tr>

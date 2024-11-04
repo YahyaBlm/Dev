@@ -21,7 +21,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
         <div class="d-flex justify-content-between">
             <h1>Liste des Partenaires</h1>
 
-            <a class="btn btn-dark" href="/Partner/create">Nouveau Partenaire</a>
+            <a class="btn btn-dark" href="/Partner/create">Nouveau Partenaire</a><br>
+            <a class="btn btn-dark" href="/home">Retour au site</a>
 
         </div><br>
 
@@ -49,7 +50,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
                     <td><?php echo substr($partner->partner_link, 0, 30) . "..."; ?></td>
                     <td><!--call to action-->
                         <a class="btn btn-success" href="/Partner/update/<?php echo $partner->id; ?>">Modifier</a>
-                        <a class="btn btn-danger" href="/Partner/delete/<?php echo $partner->id; ?>">Supprimer</a>
+                        <?php if ($_SESSION['auth']->id_role > 2) { ?>
+                            <a class="btn btn-danger" href="/Partner/delete/<?php echo $partner->id; ?>">Supprimer</a>
+                        <?php } ?>
                     </td>
                 </tr>
             </tbody>

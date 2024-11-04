@@ -19,18 +19,29 @@ class Comments extends Model
         JOIN users ON users.id = id_user";
         $result = $this->pdo->prepare($req);
         $result->execute();
-        return $result->fetchAll(\PDO::FETCH_OBJ);
+        return $result->fetchAll();
     }
 
     public function readOnly($id)
     {
-        $req = "SELECT $this->table.* , livre_titre , user_prenom , user_nom FROM $this->table
+        $req = "SELECT $this->table.* , livre_titre , user_prenom , user_nom 
+        FROM $this->table
         JOIN Livres ON livres.id = id_livre 
         JOIN users ON users.id = id_user
         WHERE $this->table.id = :id";
         $result = $this->pdo->prepare($req);
         $result->bindValue(":id", $id);
         $result->execute();
-        return $result->fetch(\PDO::FETCH_OBJ);
+        return $result->fetch();
+    }
+
+    public function getComments($idBook)
+    {
+        $req = "SELECT * FROM $this->table
+        WHERE id_livre = $idBook";
+        $result = $this->pdo->prepare($req);
+        $result->bindValue(":id_livre" , $idBook);
+        $result->execute();
+        return $result->fetch();
     }
 }

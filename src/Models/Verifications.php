@@ -3,16 +3,19 @@
 namespace App\Models;
 
 use App\Db\Db;
+use App\Models\Users;
 
 class Verifications extends Db
 {
 
     protected $pdo;
     protected $errors = [];
+    protected $userModel;
 
     public function __construct()
     {
         $this->pdo = Db::getInstance();
+        $this->userModel = new Users;
     }
 
 
@@ -48,10 +51,10 @@ class Verifications extends Db
             } else {
                 return $_POST['user_email'];
             }
-        } 
+        }
     }
 
-    public function verifUserMailUpdate ()
+    public function verifUserMailUpdate()
     {
         if (empty($_POST['user_email']) || !filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)) {
             $this->errors['user_email'] = "Le champ 'E-mail' n'est pas valide.";
@@ -60,10 +63,26 @@ class Verifications extends Db
         }
     }
 
+    public function login()
+    {
+        if (empty($_POST['user_email']) || !filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)) {
+            $this->errors['user_email'] = "Le champ 'E-mail' n'est pas valide.";
+        } else {
+            $user = $this->userModel->readByMail($_POST['user_email']);
+            if ($user) {
+                if (empty($_POST['user_password']) || !password_verify($_POST['user_password'], $user->user_password)) {
+                    $this->errors['user_password'] = "Le champ 'Mot de passe' n'est pas valide.";
+                } else {
+                    return $user;
+                }
+            }
+        }
+    }
+
     public function verifPassword()
     {
         if (empty($_POST['user_password']) || empty($_POST['confMdp']) || $_POST['user_password'] != $_POST['confMdp']) {
-            $this->errors['user_password'] = 'Vos mots de passes sont vides ou non identiques';
+            $this->errors['user_password'] = 'Vos mots de passes sont vides ou pas identiques';
         } else {
             return $_POST['user_password'];
         }
@@ -71,8 +90,6 @@ class Verifications extends Db
 
     public function verifLogin(array $infos)
     {
-        // $this->pdo->verifUserMail;
-        // $this->pdo->verifPassword;
 
         if (!empty($_POST['user_email']) && !empty($_POST['user_password'])) {
             $req = $this->pdo->prepare('SELECT * FROM users

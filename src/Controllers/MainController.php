@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Db\Db;
+use App\Models\Users;
 
 class MainController extends Db
 {
@@ -14,7 +15,8 @@ class MainController extends Db
         $this->pdo = Db::getInstance();
     }
 
-    public function index() {
+    public function index()
+    {
         // echo 'coucou';
     }
 
@@ -65,4 +67,34 @@ class MainController extends Db
 
         return $errors;
     }
+
+    public function isLevel(int $Level)
+    {
+        $userModel =  new Users;
+        $id = $_SESSION['auth']->id;
+        $user = $userModel->readOnly($id);
+        // var_dump($user);die;
+        if ($user->role_level < $Level) {
+            header('Location: /home');
+        }
+    }
+
+    public function admin()
+    {
+        if (!isset($_SESSION['auth'])) {
+            header('Location: /home');
+        } else {
+            $id = $_SESSION['auth']->id;
+            // var_dump($_SESSION);
+            $userModel =  new Users;
+            $user = $userModel->readOnly($id);
+
+            // var_dump($user);die;
+
+            if ($user->role_level < 100) {
+                header('Location: /home');
+            }
+        }
+    }
+
 }

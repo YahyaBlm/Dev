@@ -106,7 +106,7 @@ header {
 }
 
 .navBar {
-  width: 50%;
+  width: 60%;
   display: flex;
   justify-content: space-between;
   padding: 1%;
@@ -235,11 +235,19 @@ address > p > a {
   font-style: normal;
 }
 
+.navBarShow {
+  display: none;
+}
+
 @media  screen and (max-width: 1000px){
-  body {
+  /* body {
     width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
-}
+  } */
+
+  .navBarShow {
+    display : block;
+  }
 }

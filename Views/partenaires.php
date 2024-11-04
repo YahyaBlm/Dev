@@ -17,11 +17,21 @@
 
       <nav class="navBar">
         <a href="/home">Accueil</a>
-        <a href="/oeuvres">Oeuvres</a>
+        <a href="/books">Oeuvres</a>
         <a href="/articles">Articles</a>
         <a href="/partenaires" class="active">Partenaires</a>
         <a href="/contact">Contact</a>
-        <a href="/profile"><img src="./public/assets/Images/iconProfil.png" class="iconProfil" alt="icon pour acceder a son profile"></a>
+
+        <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->id_role > 1) { ?>
+          <a href="/book/index">Admin</a>
+        <?php } ?>
+
+        <?php if (!isset($_SESSION['auth'])) { ?>
+          <a href="/user/login" class="active"><img src="/public/assets/Images/iconProfil.png" class="iconProfil" alt="icon pour acceder a son profile"></a>
+        <?php } else { ?>
+          <a href="/user/logout">Déconnexion</a>
+        <?php   } ?>
+
       </nav>
     </div>
     <img
@@ -43,56 +53,19 @@
     <h1 class="title titre">Partenaires</h1>
 
     <section class="partner-container">
+    <?php foreach ($partners as $index => $partner) { ?>
       <div class="partner-card">
-        <img src="https://via.placeholder.com/300x200" alt="Image Oeuvre1" />
+        <img src="/Admin/public/assets/Images/PartnerImages/<?= $partner->partner_image; ?>" alt="Image du partenaire" />
 
         <div class="card-content">
-          <h3>Nom, Prénom</h3>
+          <h3><?= $partner->partner_prenom . " " . $partner->partner_nom ?></h3>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Accusantium adipisci repudiandae at natus ab. Ullam perspiciatis,
-            laborum, corporis veritatis a, consectetur veniam vel rerum natus
-            nam sequi dolor odio fugiat quis quos totam! Debitis quia quis
-            iure tempore iste commodi impedit, sunt fugiat! Autem voluptate
-            voluptates optio quasi error cumque...
+          <?= $partner->partner_description; ?>
           </p>
-          <a href="#">Lien vers son reseau</a>
+          <a href="<?= $partner->partner_link; ?>" target="_blank"><?= $partner->partner_link; ?></a>
         </div>
       </div>
-
-      <div class="partner-card">
-        <img src="https://via.placeholder.com/300x200" alt="Image Oeuvre1" />
-
-        <div class="card-content">
-          <h3>Nom, Prénom</h3>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Accusantium adipisci repudiandae at natus ab. Ullam perspiciatis,
-            laborum, corporis veritatis a, consectetur veniam vel rerum natus
-            nam sequi dolor odio fugiat quis quos totam! Debitis quia quis
-            iure tempore iste commodi impedit, sunt fugiat! Autem voluptate
-            voluptates optio quasi error cumque...
-          </p>
-          <a href="#">Lien vers son reseau</a>
-        </div>
-      </div>
-
-      <div class="partner-card">
-        <img src="https://via.placeholder.com/300x200" alt="Image Oeuvre1" />
-
-        <div class="card-content">
-          <h3>Nom, Prénom</h3>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Accusantium adipisci repudiandae at natus ab. Ullam perspiciatis,
-            laborum, corporis veritatis a, consectetur veniam vel rerum natus
-            nam sequi dolor odio fugiat quis quos totam! Debitis quia quis
-            iure tempore iste commodi impedit, sunt fugiat! Autem voluptate
-            voluptates optio quasi error cumque...
-          </p>
-          <a href="#">Lien vers son reseau</a>
-        </div>
-      </div>
+      <?php } ?>
     </section>
   </main>
 

@@ -26,7 +26,7 @@ class Router
         //separer les parametres
         $params = [''];
         if (isset($_GET['url'])) {
-            $params = explode('/', $_GET['url']); 
+            $params = explode('/', filter_var($_GET['url'],FILTER_SANITIZE_URL)); 
         }
 
         

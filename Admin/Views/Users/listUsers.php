@@ -22,7 +22,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
         <div class="d-flex justify-content-between">
             <h1>Liste des Utilisateurs</h1>
 
-            <a class="btn btn-dark" href="/User/create">Nouvel utilisateur</a>
+            <a class="btn btn-dark" href="/User/create">Nouvel utilisateur</a><br>
+            <a class="btn btn-dark" href="/home">Retour au site</a>
 
         </div><br>
 
@@ -49,7 +50,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
                     <td><?php echo $user->role_name; ?></td>
                     <td><!--call to action-->
                         <a class="btn btn-success" href="/user/update/<?php echo $user->id; ?>">Modifier</a>
+                        <?php if ($_SESSION['auth']->id_role > 2) { ?>
                         <a class="btn btn-danger" href="/user/delete/<?php echo $user->id; ?>">Supprimer</a>
+                        <?php } ?>
                     </td>
                 </tr>
                 <?php } ?>
