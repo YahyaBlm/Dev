@@ -101,22 +101,6 @@ class UserController extends MainController
         require 'Admin/Views/delete.php';
     }
 
-    public function login()
-    {
-        if (isset($_SESSION['auth'])) {
-            header('location: /Books');
-        }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            $user = $this->verifications->login();
-            if ($user) {
-                $_SESSION['auth'] = $user;
-                header('location: /Books');
-            }
-        }
-        require './Views/profile.php';
-    }
-
     public function register()
     {
         $firstname = $this->VerifBack->verifUserName();
@@ -140,6 +124,22 @@ class UserController extends MainController
             header('Location: /user/login');
         }
         require './Views/inscription.php';
+    }
+
+    public function login()
+    {
+        if (isset($_SESSION['auth'])) {
+            header('location: /Books');
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $user = $this->verifications->login();
+            if ($user) {
+                $_SESSION['auth'] = $user;
+                header('location: /Books');
+            }
+        }
+        require './Views/profile.php';
     }
 
     public function logout()

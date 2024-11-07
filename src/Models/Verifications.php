@@ -18,10 +18,9 @@ class Verifications extends Db
         $this->userModel = new Users;
     }
 
-
     public function verifUserName()
     {
-        if (empty($_POST['user_firstname']) || !preg_match('/^[a-zA-Z ]+$/', $_POST['user_firstname'])) {
+        if (empty($_POST['user_firstname']) || !preg_match('/^[a-zA-Z]+$/', $_POST['user_firstname'])) {
             $this->errors['user_firstname'] = "Le champ 'Prénom' n'est pas valide.";
         } else {
             return $_POST['user_firstname'];
@@ -30,7 +29,7 @@ class Verifications extends Db
 
     public function verifUserLastname()
     {
-        if (empty($_POST['user_lastname']) || !preg_match('/^[a-zA-Z ]+$/', $_POST['user_lastname'])) {
+        if (empty($_POST['user_lastname']) || !preg_match('/^[a-zA-Z]+$/', $_POST['user_lastname'])) {
             $this->errors['user_lastname'] = "Le champ 'Nom' n'est pas valide.";
         } else {
             return $_POST['user_lastname'];

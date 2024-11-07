@@ -46,7 +46,7 @@
   <main>
     <h1 class="title titre">Articles</h1>
 
-    <section class="articles-container">
+    <article class="articles-container">
       <?php foreach ($articles as $index => $article) { ?>
         <div class="article-card">
           <img src="/Admin/public/assets/Images/ArticleImages/<?= $article->article_image; ?>" alt="Image de l'article" />
@@ -61,7 +61,7 @@
 
         </div>
       <?php } ?>
-    </section>
+    </article>
   </main>
 
   <div class="divider-container">

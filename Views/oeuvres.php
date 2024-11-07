@@ -15,6 +15,7 @@
       <a href="/firstPage" class="logo">Thalie Perrot</a>
 
       <nav class="navBar">
+        
         <a href="/home">Accueil</a>
         <a href="/books" class="active">Oeuvres</a>
         <a href="/articles">Articles</a>
@@ -45,21 +46,25 @@
 
   <main>
     <h1 class="title titre">Mes Oeuvres</h1>
+    <section>
 
-    <section class="cards-container">
-      <?php foreach ($books as $index => $book) { ?>
-        <div class="card">
-          <img src="/Admin/public/assets/Images/BookImages/<?= $book->livre_couverture; ?>" alt="Image de l'oeuvre" />
+      <article class="cards-container">
+        <?php foreach ($books as $index => $book) { ?>
+          <div class="card">
+            <img src="/Admin/public/assets/Images/BookImages/<?= $book->livre_couverture; ?>" alt="Image de l'oeuvre" />
 
-          <div class="card-content">
-            <h3><?= $book->livre_titre ?></h3>
-            <p>
-              <?= substr($book->livre_resume, 0, 30) . '...'; ?>
-            </p>
-            <a href="/books/details/<?= $book->id; ?>">En savoir plus</a>
+            <div class="card-content">
+              <h3><?= $book->livre_titre ?></h3>
+              <p>
+                <?= substr($book->livre_resume, 0, 30) . '...'; ?>
+              </p>
+              <a href="/books/details/<?= $book->id; ?>">En savoir plus</a>
+            </div>
+
           </div>
-        </div>
-      <?php } ?>
+        <?php } ?>
+
+      </article>
 
     </section>
   </main>

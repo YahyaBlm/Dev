@@ -1,6 +1,7 @@
 /*---------------- Articles --------------*/
 
 .articles-container {
+  position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 50px;

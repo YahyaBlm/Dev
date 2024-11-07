@@ -239,15 +239,48 @@ address > p > a {
   display: none;
 }
 
-@media  screen and (max-width: 1000px){
-  /* body {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  } */
+@media screen and (max-width: 1000px) {
+  .mere {
+    left: 0auto;
+  }
+
+  .logo {
+    width: 30%;
+    /* font-size: 2em; */
+  }
+
+  .logoImg {
+    width: 80%;
+    height: auto;
+    left: 10%;
+  }
+
+  .navBar {
+    display: none;
+  }
 
   .navBarShow {
-    display : block;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  .logoImg {
+    width: 100%;
+    height: auto;
+    left: 0;
+  }
+
+  .logo {
+    width: 40%;
+    font-size: 3em;
+  }
+
+  .navBar {
+    display: none;
+  }
+
+  .navBarShow {
+    display: block;
   }
 }
