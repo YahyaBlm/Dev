@@ -17,6 +17,7 @@ class PartnerController extends MainController
 
     public function index()
     {
+        $this->auth();
         $this->isLevel(50);
         $partners = $this->model->readAll();
         require 'Admin/Views/Partner/listPartners.php';
@@ -24,6 +25,7 @@ class PartnerController extends MainController
 
     public function create()
     {
+        $this->auth();
         $this->isLevel(50);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nameDir = "PartnerImages";
@@ -48,6 +50,7 @@ class PartnerController extends MainController
 
     public function update($id)
     {
+        $this->auth();
         $this->isLevel(50);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $partnerDescript = $_POST['descript'];
@@ -76,6 +79,7 @@ class PartnerController extends MainController
 
     public function delete($id)
     {
+        $this->auth();
         $this->admin();
         $partner = $this->model->readOnly($id);
         $delete = "Voulez-vous supprimer le partenaire \"" . $partner->partner_prenom . " " . $partner->partner_nom . "\" ?";

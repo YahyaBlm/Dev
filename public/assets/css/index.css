@@ -23,11 +23,6 @@ html,
 body {
   width: 100%;
   height: 100%;
-  /* background-color: #121e27; */
-}
-
-input {
-  border-radius: 5px;
 }
 
 header {
@@ -46,6 +41,20 @@ header {
   z-index: 100;
 }
 
+.logoImg {
+  position: absolute;
+  width: 44%;
+  height: auto;
+  top: 12%;
+  left: 28%;
+  z-index: 2;
+  animation: grow 2s ease-out;
+}
+
+input {
+  border-radius: 5px;
+}
+
 .mere {
   width: 100%;
   height: 100%;
@@ -62,16 +71,6 @@ header {
     transform: scale(1);
     opacity: 1;
   }
-}
-
-.logoImg {
-  position: absolute;
-  width: 44%;
-  height: auto;
-  top: 12%;
-  left: 28%;
-  z-index: 2;
-  animation: grow 2s ease-out;
 }
 
 @keyframes apparitionLogo {
@@ -106,7 +105,7 @@ header {
 }
 
 .navBar {
-  width: 60%;
+  width: 65%;
   display: flex;
   justify-content: space-between;
   padding: 1%;
@@ -187,6 +186,7 @@ main {
     linear-gradient(to bottom, #2b4452, #121e27);
   background-position: center center, center center;
   background-size: cover, cover;
+  padding: 64px;
 }
 
 .presentation-container {
@@ -246,7 +246,6 @@ address > p > a {
 
   .logo {
     width: 30%;
-    /* font-size: 2em; */
   }
 
   .logoImg {

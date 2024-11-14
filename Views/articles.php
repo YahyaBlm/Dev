@@ -51,7 +51,7 @@
         <div class="article-card">
           <img src="/Admin/public/assets/Images/ArticleImages/<?= $article->article_image; ?>" alt="Image de l'article" />
 
-          <div class="card-content">
+          <div class="article-content">
             <h3><?= $article->article_text ?></h3>
             <p>
             <?= substr($article->article_text, 0, 300) . '...'; ?>

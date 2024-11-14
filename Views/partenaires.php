@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="./public/assets/css/index.css" />
   <link rel="stylesheet" href="./public/assets/css/partenaires.css" />
   <link rel="stylesheet" href="./public/assets/css/oeuvres.css" />
+  <link rel="stylesheet" href="./public/assets/css/articles.css" />
   <title>Thalie Perrot</title>
 </head>
 
@@ -53,18 +54,18 @@
     <h1 class="title titre">Partenaires</h1>
 
     <section class="partner-container">
-    <?php foreach ($partners as $index => $partner) { ?>
-      <div class="partner-card">
-        <img src="/Admin/public/assets/Images/PartnerImages/<?= $partner->partner_image; ?>" alt="Image du partenaire" />
+      <?php foreach ($partners as $index => $partner) { ?>
+        <div class="partner-card">
+          <img src="/Admin/public/assets/Images/PartnerImages/<?= $partner->partner_image; ?>" alt="Image du partenaire" />
 
-        <div class="card-content">
-          <h3><?= $partner->partner_prenom . " " . $partner->partner_nom ?></h3>
-          <p>
-          <?= $partner->partner_description; ?>
-          </p>
-          <a href="<?= $partner->partner_link; ?>" target="_blank"><?= $partner->partner_link; ?></a>
+          <div class="article-content">
+            <h3><?= $partner->partner_prenom . " " . $partner->partner_nom ?></h3>
+            <p>
+              <?= $partner->partner_description; ?>
+            </p>
+            <a href="<?= $partner->partner_link; ?>" target="_blank"><?= $partner->partner_link; ?></a>
+          </div>
         </div>
-      </div>
       <?php } ?>
     </section>
   </main>

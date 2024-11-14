@@ -56,7 +56,7 @@
             <label for="mr">Mr. </label>
 
             <input type="radio" class="radio" name="civil" id="autre" />
-            <label for="mr">Autres </label><br />
+            <label for="autre">Autres </label><br />
           </div>
           <div class="input-group">
             <label for="nom">Nom</label>

@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     gap: 5%;
-    width: 1000px;
+    max-width: 1000px;
     height: 1000px;
     margin: 0 auto;
     padding: 120px 50px;
@@ -38,7 +38,6 @@
   }
   
   .input-txtarea {
-    width: 60%;
     display: flex;
     flex-direction: column;
   }
@@ -48,6 +47,7 @@
   }
   
   #submitContact {
+    display: block;
     font-family: Salsa;
     width: 20%;
     height: 4%;

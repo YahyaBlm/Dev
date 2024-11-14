@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/public/assets/css/index.css" />
   <link rel="stylesheet" href="/public/assets/css/oeuvres.css" />
+  <link rel="stylesheet" href="/public/assets/css/contact.css" />
   <title>Thalie Perrot</title>
 </head>
 
@@ -45,38 +46,50 @@
   <main class="bookContainer">
     <h1 class="title titre"><?= $book->livre_titre ?></h1>
 
-    <section class="oeuvre-container">
+    <section class="book-container">
       <div class="card">
         <img src="/Admin/public/assets/Images/BookImages/<?= $book->livre_couverture; ?>" alt="Image Oeuvre1" />
       </div>
-      <div class="card-content">
+      <div class="cardBook-content">
         <p>
           <?= $book->livre_resume; ?>
         </p>
       </div>
 
-      <div class="card-content">
-        <a>
-          <?= $book->livre_linkSale; ?>
+      <div class="cardBook-content">
+        <a
+          href="<?= $book->livre_linkSale; ?>" target="_blank">
+          Lien d'achat vers Amazon
         </a>
       </div>
     </section>
 
-    <section class="oeuvre-container">
+    <section class="comment-container">
       <h2>Commentaires</h2>
 
-      <form action="/comment/insertComment/<?=$book->id?>" method="POST">
-        <textarea name="comment" placeholder="Écrivez un commentaire..." required></textarea>
+      <?php if (isset($_SESSION['auth'])) { ?>
 
-        <button type="submit" class="submit">Envoyer</button>
-      </form>
+        <form action="/comment/insertComment/<?= $book->id ?>" method="POST">
+          <textarea name="comment" placeholder="Laisser un commentaire..." required id="comment"
+            cols="80"
+            rows="8"></textarea>
 
-        <div class="comment">
-          <?php foreach ($comments as $index => $comment) { ?>
-          <p> <?= $comment->user_prenom . " " . $comment->user_nom ; ?> </p>
-          <p> <?= $comment->commentaire ; ?> </p>
-          <?php } ?>
-        </div>
+          <input type="submit" value="Envoyer" id="submitContact" />
+        </form>
+
+      <?php } else { ?>
+        <a class="loginComment"
+          href="/user/login">
+          Connectez-vous pour laisser un commentaire !
+        </a>
+      <?php } ?>
+
+      <div class="comment">
+        <?php foreach ($comments as $index => $comment) { ?>
+          <p> <?= $comment->user_prenom . " " . $comment->user_nom; ?> </p>
+          <p> <?= $comment->commentaire; ?> </p>
+        <?php } ?>
+      </div>
     </section>
   </main>
 

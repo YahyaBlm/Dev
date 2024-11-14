@@ -2,11 +2,13 @@
 <html lang="fr">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./public/assets/css/index.css">
   <script src="/public/assets/js/burgerMenu.js"></script>
   <title>Thalie Perrot</title>
+  
 </head>
 
 <body>
@@ -22,13 +24,13 @@
         <a href="/contact">Contact</a>
 
         <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->id_role > 1) { ?>
-          <a href="/book/index">Admin</a>
+          <a href="//index">Admin</a>
         <?php } ?>
 
         <?php if (!isset($_SESSION['auth'])) { ?>
           <a href="/user/login" class="active"><img src="/public/assets/Images/iconProfil.png" class="iconProfil" alt="icon pour acceder a son profile"></a>
         <?php } else { ?>
-          <a href="/user/logout">Déconnexion</a>
+          <a href="/user/logout"><img src="/public/assets/Images/iconDisconnect.png" class="iconProfil" alt="se déconecter"></a>
         <?php   } ?>
 
       </nav>
@@ -46,7 +48,7 @@
         <img src="./public/assets/Images/profilePhoto.png" alt="photo de Thalie Perrot">
       </div>
 
-      <div>
+      <article>
         <div class="title">
           <h1>Thalie Perrot</h1>
         </div><br>
@@ -73,7 +75,7 @@
           </p>
         </div>
 
-      </div>
+        </article>
 
     </section>
   </main>

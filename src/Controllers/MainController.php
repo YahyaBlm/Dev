@@ -97,4 +97,10 @@ class MainController extends Db
         }
     }
 
+    public function auth() {
+        if (!isset($_SESSION['auth'])) {
+            header('location: /home');
+        }
+    }
+
 }

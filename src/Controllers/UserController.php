@@ -21,6 +21,7 @@ class UserController extends MainController
 
     public function index()
     {
+        $this->auth();
         $this->isLevel(50);
         $users = $this->model->readAll();
         require 'Admin/Views/Users/listUsers.php';
@@ -28,6 +29,7 @@ class UserController extends MainController
 
     public function create()
     {
+        $this->auth();
         $this->isLevel(50);
         $firstname = $this->VerifBack->verifUserName();
         $lastname = $this->VerifBack->verifUserLastname();
@@ -58,6 +60,7 @@ class UserController extends MainController
 
     public function update($id)
     {
+        $this->auth();
         $this->isLevel(50);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $firstname = $this->VerifBack->verifUserName();
@@ -84,6 +87,7 @@ class UserController extends MainController
 
     public function delete($id)
     {
+        $this->auth();
         $this->admin();
         $user = $this->model->readOnly($id);
         $delete = "Voulez-vous supprimer \"" . $user->user_prenom . " " . $user->user_nom . "\" ?";

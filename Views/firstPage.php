@@ -10,7 +10,7 @@
 
 <body>
   <section class="animation">
-    <img id="mere" src="./public/assets/Images/background.jpg" alt="Paysage de mère" />
+    <!-- <img id="mere" src="./public/assets/Images/background.jpg" alt="Paysage de mère" /> -->
     <img id="bateau" src="./public/assets/Images/ship.png" alt="bateau" />
     <img id="logo" src="./public/assets/Images/LogoThaliePerrot.png" alt="Logo Thalie Perrot" />
     <img id="thunder" src="./public/assets/Images/thunder3.png" alt="Eclaire" />

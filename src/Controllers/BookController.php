@@ -17,6 +17,7 @@ class BookController extends MainController
 
     public function index()
     {
+        $this->auth();
         $this->isLevel(50);
         $books = $this->model->readAll();
         require 'Admin/Views/Oeuvres/listBooks.php';
@@ -24,6 +25,7 @@ class BookController extends MainController
 
     public function create()
     {
+        $this->auth();
         $this->isLevel(50);
         $bookResume = "";
         $nameDir = 'BookImages';
@@ -49,6 +51,7 @@ class BookController extends MainController
 
     public function update($id)
     {
+        $this->auth();
         $this->isLevel(50);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $bookResume = $_POST['resume'];
@@ -76,6 +79,7 @@ class BookController extends MainController
 
     public function delete($id)
     {
+        $this->auth();
         $this->admin();
         $book = $this->model->readOnly($id);
         $delete = "Voulez-vous supprimer l'oeuvre \"" . ucfirst($book->livre_titre) . "\" ?";
