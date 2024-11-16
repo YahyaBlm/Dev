@@ -17,7 +17,7 @@ class ArticleController extends MainController
 
     public function index()
     {
-        $this->auth();
+        $this->islogged();
         $this->isLevel(50);
         $articles = $this->model->readAll();
         require 'Admin/Views/Articles/listArticles.php';
@@ -25,7 +25,7 @@ class ArticleController extends MainController
 
     public function create()
     {
-        $this->auth();
+        $this->islogged();
         $this->isLevel(50);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nameDir = 'ArticleImages';
@@ -49,7 +49,7 @@ class ArticleController extends MainController
 
     public function update($id)
     {
-        $this->auth();
+        $this->islogged();
         $this->isLevel(50);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $articleText = $_POST['article'];
@@ -76,7 +76,7 @@ class ArticleController extends MainController
 
     public function delete($id)
     {
-        $this->auth();
+        $this->islogged();
         $this->admin();
         $article = $this->model->readOnly($id);
         $delete = "Voulez-vous supprimer l'article \"" . ucfirst($article->article_titre) . "\" ?";

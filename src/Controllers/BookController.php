@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Livres;
+use App\Models\Model;
 
 class BookController extends MainController
 {
@@ -17,7 +18,7 @@ class BookController extends MainController
 
     public function index()
     {
-        $this->auth();
+        $this->islogged();
         $this->isLevel(50);
         $books = $this->model->readAll();
         require 'Admin/Views/Oeuvres/listBooks.php';
@@ -25,7 +26,7 @@ class BookController extends MainController
 
     public function create()
     {
-        $this->auth();
+        $this->islogged();
         $this->isLevel(50);
         $bookResume = "";
         $nameDir = 'BookImages';
@@ -41,6 +42,10 @@ class BookController extends MainController
             $id = $this->model->create($infos);
             $this->uploadImage($id, $nameDir, 'livre_couverture');
 
+            $this->CarouselImages($id, $nameDir, 'image');
+
+            // $ImagesModel = New Images;
+
             header('Location: /Book');
         } else {
             $pageTitle = "Ajouter une nouvelle oeuvre";
@@ -51,7 +56,7 @@ class BookController extends MainController
 
     public function update($id)
     {
-        $this->auth();
+        $this->islogged();
         $this->isLevel(50);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $bookResume = $_POST['resume'];
@@ -61,7 +66,7 @@ class BookController extends MainController
                 'livre_resume' => $bookResume,
                 'livre_linkSale' => $_POST['link']
             ];
-            
+
             $this->model->update($id, $infos);
 
             if ($_FILES['cover']) {
@@ -79,7 +84,7 @@ class BookController extends MainController
 
     public function delete($id)
     {
-        $this->auth();
+        $this->islogged();
         $this->admin();
         $book = $this->model->readOnly($id);
         $delete = "Voulez-vous supprimer l'oeuvre \"" . ucfirst($book->livre_titre) . "\" ?";

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Comments;
+use App\Models\Images;
 use App\Models\Livres;
 
 class BooksController
@@ -14,7 +15,6 @@ class BooksController
     {
         $this->model = new Livres();
         $this->table = 'livres';
-
     }
 
     public function index()
@@ -31,5 +31,11 @@ class BooksController
         require './Views/oeuvre.php';
     }
 
-
+    public function getImages($id)
+    {
+        $ImagesModel = new Images;
+        $Images = $ImagesModel->findByBook($id);
+        // tableau d'objet que je transforme en json pour pouvoir l'envoyer au JS
+        echo json_encode($Images);
+    }
 }

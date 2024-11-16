@@ -68,6 +68,52 @@ class MainController extends Db
         return $errors;
     }
 
+
+
+
+    public function CarouselImages($id, $nameDir, $column)
+    {
+        for ($i = 0; $i < count($_POST['images']); $i++) {
+            $errors = [];
+
+            if (is_uploaded_file($_FILES['image']['tmp_name'][$i])) {
+                $extensions = ['.jpg', '.png', '.jpeg', '.ico', '.JPG', '.PNG', '.JPEG', '.ICO'];
+                $ext = strrchr($_FILES['image']['name'], '.');
+                if (in_array($ext, $extensions)) {
+                    $SizeMax = 5 * 1000 * 1000;
+
+                    if ($_FILES['image']['size'] < $SizeMax) {
+
+                        $baseDir = $_SERVER['DOCUMENT_ROOT'] . '/Admin/public/assets/Images';
+                        $destinationDir = $baseDir . '/' . $nameDir;
+
+                        $uniqName = uniqid('img_', true) . $ext;
+                        $destinationFile = $destinationDir . '/' . $uniqName;
+
+                        if (!file_exists($destinationDir)) {
+                            mkdir($destinationDir, 0777, true);
+                        }
+
+                        if (move_uploaded_file($_FILES['image']['tmp_name'], $destinationFile)) {
+                            $createImg = $this->pdo->prepare("INSERT INTO $this->table  () VALUES () WHERE id = :id");
+                            $createImg->execute(['image' => $uniqName, 'id' => $id]);
+                        } else {
+                            $errors['image'] = "Erreur lors du déplacement du fichier.";
+                        }
+                    } else {
+                        $errors['image'] = "Le fichier est trop volumineux. Taille maximale autorisée : 10 Mo.";
+                    }
+                } else {
+                    $errors['image'] = "Format d'image non autorisé.";
+                }
+            } else {
+                $errors['image'] = "Aucun fichier téléchargé.";
+            }
+            
+            return $errors;
+        }
+    }
+
     public function isLevel(int $Level)
     {
         $userModel =  new Users;
@@ -97,10 +143,10 @@ class MainController extends Db
         }
     }
 
-    public function auth() {
+    public function islogged()
+    {
         if (!isset($_SESSION['auth'])) {
             header('location: /home');
         }
     }
-
 }

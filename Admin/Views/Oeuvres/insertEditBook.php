@@ -51,7 +51,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
 
             <div class="mb-3">
                 <label for="cover" class="form-label">Couverture</label>
-                <input type="file" class="form-control" id="cover" name="cover" >
+                <input type="file" class="form-control" id="cover" name="cover">
             </div>
 
             <div class="mb-3">
@@ -60,14 +60,26 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
                                                                                                                                 echo $book->livre_linkSale;
                                                                                                                             }; ?>">
             </div>
+
+            <div id="file-input-container" class="mb-3">
+                <label for="images" class="form-label">Image Carousel</label>
+                <input type="file" name="images[]" class="form-control" id="images" />
+            </div>
+
+            <div class="mb-3">
+                <a id="add-file-button" class="btn btn-primary">Plus d'image</a>
+            </div>
+
             <div>
 
-                <button class="btn btn-success" type="submit" ><?= $buttonValue; ?></button>
+                <button class="btn btn-success" type="submit"><?= $buttonValue; ?></button>
                 <a class="btn btn-dark" href="/Book">Retour</a>
 
             </div>
         </form>
     </div>
+
+    <script src="/public/assets/js/add-file.js"></script>
 
 </body>
 

@@ -1,84 +1,44 @@
-<!DOCTYPE html>
-<html lang="fr">
+<?php
+include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/meta.php');
+?>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/public/assets/css/index.css" />
-  <link rel="stylesheet" href="/public/assets/css/oeuvres.css" />
-  <link rel="stylesheet" href="/public/assets/css/articles.css" />
-  <title>Thalie Perrot</title>
+<link rel="stylesheet" href="/public/assets/css/oeuvres.css">
+<link rel="stylesheet" href="/public/assets/css/articles.css">
+
 </head>
 
-<body>
-  <header>
-    <div class="navigation">
-      <a href="/firstPage" class="logo">Thalie Perrot</a>
+<?php
+include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/dochead.php');
+?>
 
-      <nav class="navBar">
-        <a href="/home">Accueil</a>
-        <a href="/books">Oeuvres</a>
-        <a href="/articles" class="active">Articles</a>
-        <a href="/partenaires">Partenaires</a>
-        <a href="/contact">Contact</a>
+<img class="logoImg" src="/public/assets/Images/LogoThaliePerrot.png" alt="Logo Thalie Perrot">
+<img class="mere" src="/public/assets/Images/articlesWallpaper.png" alt="couple avec paysage" />
 
-        <?php if (isset($_SESSION['auth']) && $_SESSION['auth']->id_role > 1) { ?>
-          <a href="/book/index">Admin</a>
-        <?php } ?>
+</header>
 
-        <?php if (!isset($_SESSION['auth'])) { ?>
-          <a href="/user/login" class="active"><img src="/public/assets/Images/iconProfil.png" class="iconProfil" alt="icon pour acceder a son profile"></a>
-        <?php } else { ?>
-          <a href="/user/logout">Déconnexion</a>
-        <?php   } ?>
+<img class="divider he" src="/public/assets/Images/dividerHeader.png" alt="baroque diviseur">
 
-      </nav>
-    </div>
-    <img class="mere" src="/public/assets/Images/articlesWallpaper.png" alt="couple avec paysage" />
-    <img
-      class="logoImg"
-      src="/public/assets/Images/LogoThaliePerrot.png"
-      alt="Logo Thalie Perrot" />
-  </header>
+<main>
+  <h1 class="title titre">Articles</h1>
 
-  <img class="divider he" src="/public/assets/Images/dividerHeader.png" alt="baroque diviseur">
+  <article class="articles-container">
+    <?php foreach ($articles as $index => $article) { ?>
+      <div class="article-card">
+        <img src="/Admin/public/assets/Images/ArticleImages/<?= $article->article_image; ?>" alt="Image de l'article" />
 
-  <main>
-    <h1 class="title titre">Articles</h1>
-
-    <article class="articles-container">
-      <?php foreach ($articles as $index => $article) { ?>
-        <div class="article-card">
-          <img src="/Admin/public/assets/Images/ArticleImages/<?= $article->article_image; ?>" alt="Image de l'article" />
-
-          <div class="article-content">
-            <h3><?= $article->article_text ?></h3>
-            <p>
+        <div class="article-content">
+          <h3><?= $article->article_text ?></h3>
+          <p>
             <?= substr($article->article_text, 0, 300) . '...'; ?>
-            </p>
-            <a href="/articles/details/<?= $article->id; ?>">En savoir plus</a>
-          </div>
-
+          </p>
+          <a href="/articles/details/<?= $article->id; ?>">En savoir plus</a>
         </div>
-      <?php } ?>
-    </article>
-  </main>
 
-  <div class="divider-container">
-    <img class="divider fo" src="/public/assets/Images/dividerFooter.png" alt="baroque diviseur">
-  </div>
+      </div>
+    <?php } ?>
+  </article>
+</main>
 
-  <footer>
-    <address>
-      <p>Thalie Perrot &copy;</p>
-      <p>123 rue de l'exemple</p>
-      <p>Ville, code postal</p>
-      <p>Tél : <a href="tel:+2126660606">+2126660606</a></p>
-      <p>
-        Email : <a href="mailto:contact@entreprise.com">contact@thalie.com</a>
-      </p>
-    </address>
-  </footer>
-</body>
-
-</html>
+<?php
+include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/docfoot.php');
+?>

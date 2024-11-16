@@ -21,7 +21,7 @@ class UserController extends MainController
 
     public function index()
     {
-        $this->auth();
+        $this->islogged();
         $this->isLevel(50);
         $users = $this->model->readAll();
         require 'Admin/Views/Users/listUsers.php';
@@ -29,7 +29,7 @@ class UserController extends MainController
 
     public function create()
     {
-        $this->auth();
+        $this->islogged();
         $this->isLevel(50);
         $firstname = $this->VerifBack->verifUserName();
         $lastname = $this->VerifBack->verifUserLastname();
@@ -60,7 +60,7 @@ class UserController extends MainController
 
     public function update($id)
     {
-        $this->auth();
+        $this->islogged();
         $this->isLevel(50);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $firstname = $this->VerifBack->verifUserName();
@@ -87,7 +87,7 @@ class UserController extends MainController
 
     public function delete($id)
     {
-        $this->auth();
+        $this->islogged();
         $this->admin();
         $user = $this->model->readOnly($id);
         $delete = "Voulez-vous supprimer \"" . $user->user_prenom . " " . $user->user_nom . "\" ?";
@@ -127,7 +127,54 @@ class UserController extends MainController
 
             header('Location: /user/login');
         }
+        $pageTitle = "S'inscrire";
+        $buttonValue = "S'inscrire";
         require './Views/inscription.php';
+    }
+
+    public function editUser($id)
+    {
+        $this->islogged();
+        $firstname = $this->VerifBack->verifUserName();
+        $lastname = $this->VerifBack->verifUserLastname();
+        $email = $this->VerifBack->verifUserMailUpdate();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $infos = [
+                'user_nom' => $lastname,
+                'user_prenom' => $firstname,
+                'user_email' => $email,
+                'id_role' => '1',
+            ];
+
+            $this->model->update($id, $infos);
+
+            header('Location: /home');
+        }
+        $user = $this->model->readOnly($id);
+        $pageTitle = "Mes informations";
+        $buttonValue = "Modifier";
+        require './Views/inscription.php';
+    }
+
+    public function userPassword($id)
+    {
+        $user = $this->model->readOnly($id);
+        $password = $this->VerifBack->verifPassword();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            $infos = [
+                'user_password' => $hashedPassword
+            ];
+
+            $this->model->update($id, $infos);
+
+            header('Location: /user/editUser/' .$user->id);
+        }
+        require './Views/editPass.php';
     }
 
     public function login()
@@ -151,5 +198,4 @@ class UserController extends MainController
         unset($_SESSION['auth']);
         header('Location: /home');
     }
-
 }

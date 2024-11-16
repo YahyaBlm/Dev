@@ -42,7 +42,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
                 foreach ($books as $index => $book){ ?>
                 <tr>
                     <th scope="row"><?php echo $book->id; ?></th>
-                    <td><?php echo ucfirst($book->livre_titre); ?></td>
+                    <td><?php echo ucfirst(substr($book->livre_titre, 0, 40)); ?></td>
                     <td><?php echo substr($book->livre_resume, 0, 30) . '...'; ?></td>
                     <td><img src="/Admin/public/assets/Images/BookImages/<?= $book->livre_couverture; ?>" alt="image" width="110" height="150"></td>
                     <td><?php echo substr($book->livre_linkSale, 0, 30) . '...'; ?></td>

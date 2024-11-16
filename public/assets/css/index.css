@@ -141,7 +141,7 @@ input {
 }
 
 .iconProfil {
-  width: 25px;
+  width: 28px;
   height: 28px;
 }
 
@@ -181,12 +181,11 @@ label {
 
 main {
   position: relative;
-  /* background-image: url("../Images/texture.png"), linear-gradient(140deg, #396e87, #2b4452); */
   background-image: url("../Images/texture.png"),
     linear-gradient(to bottom, #2b4452, #121e27);
   background-position: center center, center center;
   background-size: cover, cover;
-  padding: 64px;
+  padding: 38px;
 }
 
 .presentation-container {

@@ -15,7 +15,7 @@ class CommentController extends MainController
 
     public function index()
     {
-        $this->auth();
+        $this->islogged();
         $this->isLevel(50);
         $comments = $this->model->readAll();
         require 'Admin/Views/Comments/listComments.php';
@@ -23,7 +23,7 @@ class CommentController extends MainController
 
     public function show($id)
     {
-        $this->auth();
+        $this->islogged();
         $this->isLevel(50);
         $comment = $this->model->readOnly($id);
         require 'Admin/Views/Comments/showComment.php';
@@ -31,7 +31,7 @@ class CommentController extends MainController
 
     public function delete($id)
     {
-        $this->auth();
+        $this->islogged();
         $this->admin();
         $delete = "Voulez-vous supprimer ce commentaire ?";
 
@@ -50,7 +50,7 @@ class CommentController extends MainController
 
     public function insertComment($idBook)
     {
-        $this->auth();
+        $this->islogged();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_SESSION['auth'])) {
                 $comment = filter_var($_POST["comment"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
