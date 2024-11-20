@@ -2,6 +2,7 @@
   <img class="divider fo" src="/public/assets/Images/dividerFooter.png" alt="baroque diviseur">
 </div>
 
+<script src="/public/assets/js/burgerMenu.js" defer ></script>
 
 <footer>
   <address>

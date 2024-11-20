@@ -234,8 +234,76 @@ address > p > a {
   font-style: normal;
 }
 
-.navBarShow {
+#menuBurger {
   display: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.burgerBox {
+  position: absolute;
+  height: 100dvh;
+  width: 100dvw;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 16px;
+  border-radius: 6px;
+  display: none;
+}
+
+#burger-links {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#nowrap {
+  white-space: nowrap;
+}
+
+#bouton {
+  margin-left: auto;
+  position: absolute;
+  right: 16px;
+  top: 0;
+  background-color: transparent;
+  border: none;
+}
+.showBurger {
+  display: block;
+}
+
+#cross {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.burgerBox a {
+  /*Dégradé sur le texte*/
+  background: linear-gradient(
+    90deg,
+    #b29962,
+    #e6c06b,
+    #f9d976,
+    #e6c06b,
+    #b29962
+  );
+  background-clip: text;
+  color: transparent;
+  /*---------------*/
+  font-family: Salsa;
+  text-decoration: none;
+  font-size: 1.5em;
+  padding: 5px 10px;
+}
+
+.menu_burgerbox {
+  position: relative;
 }
 
 @media screen and (max-width: 1000px) {
@@ -257,8 +325,13 @@ address > p > a {
     display: none;
   }
 
-  .navBarShow {
+  #menuBurger {
     display: block;
+  }
+
+  .champ {
+    padding: 8px;
+    width: 70%;
   }
 }
 
@@ -276,9 +349,5 @@ address > p > a {
 
   .navBar {
     display: none;
-  }
-
-  .navBarShow {
-    display: block;
   }
 }

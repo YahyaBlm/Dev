@@ -9,9 +9,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/dochead.php');
 ?>
 
 <img class="mere" src="./public/assets/Images/Ship.jpg" alt="bateau sur mere">
+<img class="logoImg" src="/public/assets/Images/LogoThaliePerrot.png" alt="Logo Thalie Perrot">
+
 </header>
 
-<img class="logoImg" src="/public/assets/Images/LogoThaliePerrot.png" alt="Logo Thalie Perrot">
 <img class="divider he" src="./public/assets/Images/dividerHeader.png" alt="baroque diviseur">
 
 <main>

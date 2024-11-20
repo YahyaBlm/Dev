@@ -20,19 +20,19 @@ class Verifications extends Db
 
     public function verifUserName()
     {
-        if (empty($_POST['user_firstname']) || !preg_match('/^[a-zA-Z]+$/', $_POST['user_firstname'])) {
+        if (empty($_POST['user_firstname']) || !preg_match('/^[a-zA-Z ]+$/', $_POST['user_firstname'])) {
             $this->errors['user_firstname'] = "Le champ 'Prénom' n'est pas valide.";
         } else {
-            return $_POST['user_firstname'];
+            return htmlspecialchars($_POST['user_firstname'], ENT_QUOTES, 'UTF-8');
         }
     }
 
     public function verifUserLastname()
     {
-        if (empty($_POST['user_lastname']) || !preg_match('/^[a-zA-Z]+$/', $_POST['user_lastname'])) {
+        if (empty($_POST['user_lastname']) || !preg_match('/^[a-zA-Z ]+$/', $_POST['user_lastname'])) {
             $this->errors['user_lastname'] = "Le champ 'Nom' n'est pas valide.";
         } else {
-            return $_POST['user_lastname'];
+            return htmlspecialchars($_POST['user_lastname'], ENT_QUOTES, 'UTF-8');
         }
     }
 
@@ -48,7 +48,7 @@ class Verifications extends Db
             if ($result) {
                 $this->errors['user_email'] = "Un compte existe déjà pour cet email.";
             } else {
-                return $_POST['user_email'];
+                return htmlspecialchars($_POST['user_email'], ENT_QUOTES, 'UTF-8');
             }
         }
     }
@@ -84,34 +84,6 @@ class Verifications extends Db
             $this->errors['user_password'] = 'Vos mots de passes sont vides ou pas identiques';
         } else {
             return $_POST['user_password'];
-        }
-    }
-
-    public function verifLogin(array $infos)
-    {
-
-        if (!empty($_POST['user_email']) && !empty($_POST['user_password'])) {
-            $req = $this->pdo->prepare('SELECT * FROM users
-                NATURAL JOIN roles
-                WHERE user_email = :user_email
-                ');
-            $req->bindValue(':user_email', $infos['user_email']);
-            $req->execute();
-            $user = $req->fetch();
-
-            if ($user) {
-                if (password_verify($_POST['user_password'], $user['user_password'])) {
-                    $_SESSION['auth'] = $user;
-
-                    header('Location: ' . $_SERVER['HTTP_REFERER'] . "?id=" . $_SESSION['auth']['id_user']);
-                } else {
-                    $this->errors['user'] = "Votre email ou mot de passe est incorrect.";
-                }
-            } else {
-                $this->errors['user'] = "Votre email ou mot de passe est incorrect.";
-            }
-        } else {
-            $this->errors['fields'] = "Les champs email et mot de passe doivent être remplis.";
         }
     }
 

@@ -21,12 +21,12 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/dochead.php');
 <main>
   <h1 class="title titre"><?= $article->article_titre ?></h1>
 
-  <section class="oeuvre-container">
-    <div class="card">
+  <section class="book-container">
+    <div class="cardArticle">
       <img src="/Admin/public/assets/Images/ArticleImages/<?= $article->article_image; ?>" alt="Image Oeuvre1" />
     </div>
-
-    <div class="card-content">
+    
+    <div class="cardBook-content">
       <p>
         <?= $article->article_text ?>
       </p>
@@ -37,3 +37,4 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/dochead.php');
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/docfoot.php');
 ?>
+

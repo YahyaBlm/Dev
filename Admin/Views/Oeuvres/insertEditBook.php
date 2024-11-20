@@ -45,7 +45,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/doctype.php');
 
             <div class="mb-3">
                 <label for="resume" class="form-label">Résumé</label><br>
-                <!-- <input type="text" class="form-control" id="resume" placeholder="resume" name="resume" value=""> -->
                 <textarea class="form-control" name="resume" id="resume" rows="6" cols="50"><?= $bookResume ?? ""; ?></textarea>
             </div>
 

@@ -44,8 +44,6 @@ class BookController extends MainController
 
             $this->CarouselImages($id, $nameDir, 'image');
 
-            // $ImagesModel = New Images;
-
             header('Location: /Book');
         } else {
             $pageTitle = "Ajouter une nouvelle oeuvre";

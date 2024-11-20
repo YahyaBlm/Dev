@@ -26,7 +26,7 @@ class MainController extends Db
         $errors = [];
 
         if (isset($_FILES['cover']) && is_uploaded_file($_FILES['cover']['tmp_name'])) {
-            $extensions = ['.jpg', '.png', '.jpeg', '.ico', '.JPG', '.PNG', '.JPEG', '.ICO'];
+            $extensions = ['.jpg', '.png', '.jpeg', '.ico', 'svg',  '.JPG', '.PNG', '.JPEG', '.ICO'];
             $ext = strrchr($_FILES['cover']['name'], '.');
             // Si l'extension est autorisée
             if (in_array($ext, $extensions)) {
@@ -71,7 +71,7 @@ class MainController extends Db
 
 
 
-    public function CarouselImages($id, $nameDir, $column)
+    public function CarouselImages($id, $nameDir)
     {
         for ($i = 0; $i < count($_POST['images']); $i++) {
             $errors = [];
@@ -125,28 +125,26 @@ class MainController extends Db
         }
     }
 
+    public function islogged()
+    {
+        if (!isset($_SESSION['auth'])) {
+            header('location: /home');
+        }
+    }
+
     public function admin()
     {
         if (!isset($_SESSION['auth'])) {
             header('Location: /home');
         } else {
             $id = $_SESSION['auth']->id;
-            // var_dump($_SESSION);
+
             $userModel =  new Users;
             $user = $userModel->readOnly($id);
-
-            // var_dump($user);die;
 
             if ($user->role_level < 100) {
                 header('Location: /home');
             }
-        }
-    }
-
-    public function islogged()
-    {
-        if (!isset($_SESSION['auth'])) {
-            header('location: /home');
         }
     }
 }

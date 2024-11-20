@@ -1,79 +1,79 @@
 /*------------------- Se conecter --------------*/
 
 .container-connexion {
-    display: flex;
-    flex-direction: column;
-    gap: 5%;
-    width: 600px;
-    height: 100vh;
-    margin: 0 auto;
-    padding: 250px 50px;
-  }
-  
-  .formConnexion {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .input-group-conexion {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .input-group-conexion > .champ {
-    margin: 0 auto;
-  }
-  
-  .submit {
-    font-family: Salsa;
-    width: 30%;
-    height: 4%;
-    top: 88%;
-    left: 45%;
-    padding: 4px;
-    text-align: center;
-    background: linear-gradient(
-      90deg,
-      #b29962,
-      #e6c06b,
-      #f9d976,
-      #e6c06b,
-      #b29962
-    );
-    color: #26576e;
-    border-radius: 5px;
-    font-size: 20px;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  
-  .sign {
-    /*Dégradé sur le texte*/
-    background: linear-gradient(
-      90deg,
-      #b29962,
-      #e6c06b,
-      #f9d976,
-      #e6c06b,
-      #b29962
-    );
-    background-clip: text;
-    color: transparent;
-    /*---------------*/
-  }
-  
-  .signin {
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    font-family: Salsa;
-    font-size: larger;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+  width: 600px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 250px 50px;
+}
 
-  /*--------------- Inscription ---------------*/
+.formConnexion {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.input-group-conexion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-group-conexion > .champ {
+  margin: 0 auto;
+}
+
+.submit {
+  font-family: Salsa;
+  width: 30%;
+  height: 4%;
+  top: 88%;
+  left: 45%;
+  padding: 4px;
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    #b29962,
+    #e6c06b,
+    #f9d976,
+    #e6c06b,
+    #b29962
+  );
+  color: #26576e;
+  border-radius: 5px;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sign {
+  /*Dégradé sur le texte*/
+  background: linear-gradient(
+    90deg,
+    #b29962,
+    #e6c06b,
+    #f9d976,
+    #e6c06b,
+    #b29962
+  );
+  background-clip: text;
+  color: transparent;
+  /*---------------*/
+}
+
+.signin {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: Salsa;
+  font-size: larger;
+}
+
+/*--------------- Inscription ---------------*/
 
 .container-inscription {
   display: flex;
@@ -86,8 +86,6 @@
 }
 
 .formInscription {
-  /* display: flex;
-  flex-direction: column; */
   columns: 2;
 }
 
@@ -99,3 +97,16 @@
   margin-bottom: 20px;
 }
 
+/* --------------------------- */
+
+@media screen and (max-width: 1000px) {
+  .container-inscription {
+    width: 80vw;
+    /* margin-left: 10%; */
+    padding: 220px 30px;
+  }
+
+  .formInscription {
+    column-count: 1;
+  }
+}

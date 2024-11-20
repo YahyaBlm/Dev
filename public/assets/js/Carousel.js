@@ -2,6 +2,7 @@ const img = document.getElementById("carousel");
 const rightBtn = document.getElementById("right-btn");
 const leftBtn = document.getElementById("left-btn");
 
+//je recupere l'URL de la page actuel de laquel j'extrait le dernier parametre que j'asigne a id
 const id = window.location.pathname.split("/").pop();
 let position;
 let pictures = [];

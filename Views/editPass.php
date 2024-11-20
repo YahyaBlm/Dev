@@ -19,7 +19,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/_blocks/dochead.php');
         <div class="divFormCon">
 
           <div class="input-group-conexion">
-            <label for="password" class="sign">Mot de passe</label>
+            <label for="password" class="sign">Nouveau mot de passe</label>
             <input type="password" id="password" class="champ" placeholder="Mot de passe" name="user_password" required />
           </div>
 
