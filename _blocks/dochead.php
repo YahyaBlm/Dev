@@ -5,7 +5,7 @@
       <a href="/firstPage" class="logo">Thalie Perrot</a>
 
       <div class="menu_burgerbox">
-        <img src="/public/assets/Images/menuBurger.png"
+        <img src="/public/assets/Images/MenuBurger.png"
           id="menuBurger"
           alt="Déconnexion et options">
       </div>

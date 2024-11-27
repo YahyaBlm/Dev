@@ -38,7 +38,7 @@ class Comments extends Model
     public function getComments($idBook)
     {
         $req = "SELECT $this->table.*, user_prenom , user_nom FROM $this->table
-        JOIN Users ON Users.id = id_user
+        JOIN users ON users.id = id_user
         WHERE id_livre = :id_livre";
         $result = $this->pdo->prepare($req);
         $result->bindValue(":id_livre" , $idBook);

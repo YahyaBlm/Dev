@@ -22,7 +22,7 @@ class UserController extends MainController
     public function index()
     {
         $this->islogged();
-        $this->isLevel(50);
+        $this->admin();
         $users = $this->model->readAll();
         require 'Admin/Views/Users/listUsers.php';
     }
@@ -30,7 +30,7 @@ class UserController extends MainController
     public function create()
     {
         $this->islogged();
-        $this->isLevel(50);
+        $this->admin();
         $firstname = $this->VerifBack->verifUserName();
         $lastname = $this->VerifBack->verifUserLastname();
         $email = $this->VerifBack->verifUserMailInsert();
@@ -61,7 +61,7 @@ class UserController extends MainController
     public function update($id)
     {
         $this->islogged();
-        $this->isLevel(50);
+        $this->admin();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $firstname = $this->VerifBack->verifUserName();
             $lastname = $this->VerifBack->verifUserLastname();
@@ -172,7 +172,7 @@ class UserController extends MainController
 
             $this->model->update($id, $infos);
 
-            header('Location: /user/editUser/' .$user->id);
+            header('Location: /user/editUser/' . $user->id);
         }
         require './Views/editPass.php';
     }

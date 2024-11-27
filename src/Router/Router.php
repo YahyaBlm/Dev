@@ -2,7 +2,7 @@
 
 namespace App\Router;
 
-use App\Controllers\MainController;
+use App\Controllers\HomeController;
 
 class Router
 {
@@ -64,7 +64,7 @@ class Router
             }
         } else {
             //Sinon on instancie le controller par defaut 
-            $controller = new MainController;
+            $controller = new HomeController;
             $controller->index();
         }
     }

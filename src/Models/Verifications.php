@@ -20,7 +20,7 @@ class Verifications extends Db
 
     public function verifUserName()
     {
-        if (empty($_POST['user_firstname']) || !preg_match('/^[a-zA-Z ]+$/', $_POST['user_firstname'])) {
+        if (empty($_POST['user_firstname']) || !preg_match('/^[a-zA-Z ]+$/', $_POST['user_firstname'])) { 
             $this->errors['user_firstname'] = "Le champ 'Prénom' n'est pas valide.";
         } else {
             return htmlspecialchars($_POST['user_firstname'], ENT_QUOTES, 'UTF-8');

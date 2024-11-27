@@ -42,7 +42,7 @@ class BookController extends MainController
             $id = $this->model->create($infos);
             $this->uploadImage($id, $nameDir, 'livre_couverture');
 
-            $this->CarouselImages($id, $nameDir, 'image');
+            // $this->CarouselImages($id, $nameDir, 'image');
 
             header('Location: /Book');
         } else {
